@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>mod-sanatos-de-viata</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/free-icon-diet-1717172.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+        .review-box {
+            font-family: "Nunito", sans-serif;
+            background-color: #f9d4e672;
+            margin-top: 25px;
+            margin-left: 35%;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+            font-size: 23px;
+        }
+
+        .review-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #a5d6a7;
+        }
+
+        .email {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+
+        .comment {
+            margin: 20px 0;
+            font-style: italic;
+            color: #333;
+        }
+
+        .arrows {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .arrow {
+            cursor: pointer;
+            background-color: #a55a7f72;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .arrow:hover {
+            background-color: #ae4d7d;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+
+        <div class="main">
+
+            <ul>
+                <li><i></i><a href="../index.html">Home</a></li>
+                <li><a href="dieta.html">Dietă</a></li>
+                <li><a href="igiena.html">Igienă</a></li>
+                <li><a href="studenti.html">Studenți</a></li>
+                <li><a href="test.html">Test</a></li>
+                <li class="active"><a href="reviews.html">Recenzii</a></li>
+
+            </ul>
+
+
+        </div>
+
+
+    </header>
+    <div class="review-box" id="reviewBox">
+        <img id="clientPhoto" src="" alt="Client photo">
+        <div class="email" id="clientEmail"></div>
+        <div class="comment" id="clientComment"></div>
+        <div class="arrows">
+            <button class="arrow" onclick="changeReview(-1)">&#8592;</button>
+            <button class="arrow" onclick="changeReview(1)">&#8594;</button>
+        </div>
+    </div>
+
+
+    <footer>
+        <a href="https://ms.gov.md/" target="_blank"><img width='250' src="../images/ministerul-sanatatii.jpg"></a>
+        <a href="https://gov.md/ro" target="_blank"><img width='250'
+                src="https://gov.md/sites/default/files/aderarea%20la%20UE%20cover/gov-ue.PNG"></a>
+        <a href="https://www.who.int/" target="_blank"><img width='200'
+                src="https://youth.md/wp-content/uploads/2021/07/1-2-1.png"></a>
+        <a href="https://mec.gov.md/" target="_blank"><img width='450'
+                src="https://www.lhr.md/wp-content/uploads/2018/04/Ministerul-Educatiei-636x318.png"></a>
+
+    </footer>
+
+    <script>
+
+        const reviews = [
+            {
+                img: "data:image/jpeg;base64,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",
+                email: "mama.ioneasca@gmail.com",
+                comment: `„Sunt o mamă a unui copil minunat și vă mulțumesc pentru sfaturile oferite despre igiena personală. Fiului meu i-a plăcut în mod special desenul animat despre spălatul pe mâini! Educația sănătoasă poate fi distractivă.”`
+            },
+            {
+                img: "https://i.pravatar.cc/100?img=33",
+                email: "student_lev@yandex.ru",
+                comment: `«Я студент и благодаря советам сайта улучшил свою жизнь. Правильное питание, сон и спорт помогли мне поднять средний балл с 6.50 до 8.00. Благодаря вашим советам, я чувствую себя энергичным и мотивированным!»`
+            },
+            {
+                img: "https://i.pravatar.cc/100?img=25",
+                email: "mary.bright@gmail.com",
+                comment: `"I really appreciate the BMI calculator tool. It showed me I was slightly underweight  and motivated me to change. This platform truly helped me start living healthier!"`
+            }
+        ];
+
+        let currentReview = 0;
+
+        function displayReview(index) {
+            const review = reviews[index];
+            document.getElementById('clientPhoto').src = review.img;
+            document.getElementById('clientEmail').textContent = review.email;
+            document.getElementById('clientComment').textContent = review.comment;
+        }
+
+        function changeReview(direction) {
+            currentReview = (currentReview + direction + reviews.length) % reviews.length;
+            displayReview(currentReview);
+        }
+
+        displayReview(currentReview);
+    </script>
+
+</body>
+
+</html>
